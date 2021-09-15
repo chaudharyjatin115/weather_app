@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:weather_app/widgets/air_humidity.dart';
 
-class MainWeather extends StatelessWidget {
-  const MainWeather({
-    Key? key,
-  }) : super(key: key);
+class MainWeather extends StatefulWidget {
+  @override
+  _MainWeatherState createState() => _MainWeatherState();
+}
 
+class _MainWeatherState extends State<MainWeather> {
   @override
   Widget build(BuildContext context) {
     return Column(
