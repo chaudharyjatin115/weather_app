@@ -13,10 +13,11 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   String? cityname;
   String? weatherMessage;
-  int? temp;
+  double? temperature;
   IconData? weatherIcon;
   int? condition;
   int? humidity;
+  double? windSpeed;
 
   @override
   void initState() {
@@ -28,24 +29,31 @@ class _WeatherScreenState extends State<WeatherScreen> {
     var weather = await WeatherData().getLocationWeather();
     setState(() {
       if (weather == null) {
-        temp = 0;
+        temperature = 0;
         weatherIcon = CupertinoIcons.sun_haze;
         weatherMessage = 'Unable to get weather data';
         cityname = 'Lucknow';
         condition = 400;
-
-        return;
+        humidity = 400;
+        windSpeed = 1.5;
       } else {
-        double temperature = weather['main']['temp'];
-        temp = temperature.toInt();
+        temperature = weather['main']['temp'];
 
         condition = weather['weather'][0]['id'];
         weatherIcon = WeatherData().getWeatherIcon(condition!);
         cityname = weather['name'];
-        weatherMessage = WeatherData().getMessage(temp!.toDouble());
+        weatherMessage = WeatherData().getMessage(temperature!.toDouble());
         humidity = weather['main']['humidity'];
+        windSpeed = weather['wind']['speed'];
       }
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    getWeather();
   }
 
   @override
@@ -55,7 +63,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: WeatherData().getBgColor(temp!))),
+              colors: WeatherData().getBgColor(temperature!.toInt()))),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -84,8 +92,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
               MainWeather(
                 weatherIcon: weatherIcon,
                 message: weatherMessage,
-                temp: temp,
+                temp: temperature!.toInt(),
                 humidity: humidity,
+                speed: windSpeed,
               ),
               Container(
                 alignment: Alignment.bottomLeft,

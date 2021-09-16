@@ -7,13 +7,15 @@ class MainWeather extends StatefulWidget {
   IconData? weatherIcon;
   String? message;
   int? temp;
+  double? speed;
   int? humidity;
 
   MainWeather(
       {required this.weatherIcon,
       required this.message,
       required this.temp,
-      required this.humidity});
+      required this.humidity,
+      required this.speed});
   @override
   _MainWeatherState createState() => _MainWeatherState();
 }
@@ -55,9 +57,7 @@ class _MainWeatherState extends State<MainWeather> {
             style: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w900),
           ),
         ),
-        AirHumidity(
-          humid: widget.humidity,
-        ),
+        AirHumidity(humid: widget.humidity, speed: widget.speed),
       ],
     );
   }

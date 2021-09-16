@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AirHumidity extends StatelessWidget {
   final int? humid;
-  const AirHumidity({required this.humid});
+  final double? speed;
+  const AirHumidity({required this.humid, required this.speed});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class AirHumidity extends StatelessWidget {
           ),
           SizedBox(width: 15.0),
           Text(
-            '8 km/h',
+            '$speed km/h',
             style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400),
           ),
           SizedBox(
