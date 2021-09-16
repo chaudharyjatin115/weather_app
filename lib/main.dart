@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:weather_app/Screens.dart/weatherScreen.dart';
 
 import 'colors and theme/colors.dart';
@@ -13,6 +14,7 @@ void main() {
     systemNavigationBarIconBrightness:
         Brightness.dark, // transparent status bar
   ));
+
   runApp(MyApp());
 }
 

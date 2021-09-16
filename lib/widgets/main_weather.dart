@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/widgets/air_humidity.dart';
 
 class MainWeather extends StatefulWidget {
+  IconData? weatherIcon;
+  String? message;
+  int? temp;
+  int? humidity;
+
+  MainWeather(
+      {required this.weatherIcon,
+      required this.message,
+      required this.temp,
+      required this.humidity});
   @override
   _MainWeatherState createState() => _MainWeatherState();
 }
@@ -22,7 +32,7 @@ class _MainWeatherState extends State<MainWeather> {
             alignment: Alignment.center,
             height: 180.0,
             child: Icon(
-              CupertinoIcons.sun_max,
+              widget.weatherIcon,
               size: 180.0,
               color: Colors.white,
             ),
@@ -34,18 +44,20 @@ class _MainWeatherState extends State<MainWeather> {
         Padding(
           padding: const EdgeInsets.only(top: 5.0, bottom: 20.0),
           child: Text(
-            'its Hot',
+            '${widget.message}',
             style: TextStyle(fontSize: 20.0),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 35),
           child: Text(
-            '28° ',
+            '${widget.temp}',
             style: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w900),
           ),
         ),
-        AirHumidity(),
+        AirHumidity(
+          humid: widget.humidity,
+        ),
       ],
     );
   }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AirHumidity extends StatelessWidget {
-  const AirHumidity({
-    Key? key,
-  }) : super(key: key);
+  final int? humid;
+  const AirHumidity({required this.humid});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class AirHumidity extends StatelessWidget {
             width: 20.0,
           ),
           Text(
-            '47 %',
+            '$humid %',
             style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400),
           ),
         ],
