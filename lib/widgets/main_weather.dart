@@ -53,7 +53,7 @@ class _MainWeatherState extends State<MainWeather> {
         Padding(
           padding: const EdgeInsets.only(left: 35),
           child: Text(
-            '${widget.temp}',
+            '${widget.temp}°',
             style: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w900),
           ),
         ),

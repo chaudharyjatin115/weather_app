@@ -29,37 +29,37 @@ class WeatherData extends ChangeNotifier {
   IconData getWeatherIcon(
     int condition,
   ) {
-    if (condition < 300) {
-      return CupertinoIcons.cloud_rain;
+    if (condition >= 200) {
+      return CupertinoIcons.cloud_bolt_rain;
     } else if (condition == 800) {
       return CupertinoIcons.sun_max;
     } else if (condition <= 804) {
       return CupertinoIcons.cloud_heavyrain;
     } else if (condition < 700) {
       return CupertinoIcons.cloud_snow_fill;
-    } else if (condition < 600) {
-      return CupertinoIcons.cloud_bolt_rain;
+    } else if (condition >= 600) {
+      return CupertinoIcons.snow;
     } else {
       return CupertinoIcons.cloud;
     }
   }
 
-  String getMessage(double temp) {
-    if (temp > 25) {
-      return 'Its so cold ';
-    } else if (temp > 20) {
-      return 'weather would be nice today';
-    } else if (temp > 30) {
-      return 'Its too hot';
-    } else if (temp < 10) {
-      return 'its frozing here';
+  String getMessage(int condition) {
+    if (condition >= 200) {
+      return 'ThunderStorm';
+    } else if (condition >= 300) {
+      return 'Drizzle';
+    } else if (condition >= 500) {
+      return 'Rain';
+    } else if (condition == 800) {
+      return 'Clear time to go on a walk';
     } else {
-      return 'cant help anymore';
+      return 'Cloudy';
     }
   }
 
   List<Color> getBgColor(int condition) {
-    if (condition <= 300 & 804) {
+    if (condition <= 801) {
       return [kCloudyGradientColorTop, kCloudyGradientColorBottom];
     } else if (condition == 800) {
       return [ksunnygradientColorTop, ksunnygradientColorTop];

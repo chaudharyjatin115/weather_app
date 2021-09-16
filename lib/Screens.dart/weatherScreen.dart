@@ -42,7 +42,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         condition = weather['weather'][0]['id'];
         weatherIcon = WeatherData().getWeatherIcon(condition!);
         cityname = weather['name'];
-        weatherMessage = WeatherData().getMessage(temperature!.toDouble());
+        weatherMessage = WeatherData().getMessage(condition!);
         humidity = weather['main']['humidity'];
         windSpeed = weather['wind']['speed'];
       }
