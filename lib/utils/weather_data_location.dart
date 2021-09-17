@@ -40,6 +40,8 @@ class WeatherData extends ChangeNotifier {
       return CupertinoIcons.cloud_snow_fill;
     } else if (condition >= 600) {
       return CupertinoIcons.snow;
+    } else if (condition >= 300) {
+      return CupertinoIcons.cloud_drizzle;
     } else {
       return CupertinoIcons.cloud;
     }
