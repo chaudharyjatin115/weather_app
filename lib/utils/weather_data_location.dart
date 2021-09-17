@@ -8,11 +8,6 @@ class WeatherData extends ChangeNotifier {
   final String apiKey = '9df522183f9f5d00159fd394a1116708';
   double? latitude;
   double? longitu;
-
-  String cityname = 'NewDelhi';
-  double? temprature;
-  var humidity;
-  int? condition;
 //get location and weather from open weather servers
   Future<dynamic> getLocationWeather() async {
     Location location = Location();
