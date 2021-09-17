@@ -12,10 +12,10 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   String cityname = 'Lucknow';
-  String weatherMessage = 'No weather';
+  String weatherMessage = 'Unable to get weather Data ';
   double temperature = 0.0;
   IconData weatherIcon = CupertinoIcons.clear;
-  int condition = 100;
+  int condition = 00;
   int humidity = 000;
   double windSpeed = 0.0;
 
