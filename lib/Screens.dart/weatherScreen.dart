@@ -11,13 +11,13 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  String? cityname;
-  String? weatherMessage;
-  double? temperature;
-  IconData? weatherIcon;
-  int? condition;
-  int? humidity;
-  double? windSpeed;
+  String cityname = 'Lucknow';
+  String weatherMessage = 'No weather';
+  double temperature = 0.0;
+  IconData weatherIcon = CupertinoIcons.clear;
+  int condition = 100;
+  int humidity = 000;
+  double windSpeed = 0.0;
 
   @override
   void initState() {
@@ -40,9 +40,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
         temperature = weather['main']['temp'];
 
         condition = weather['weather'][0]['id'];
-        weatherIcon = WeatherData().getWeatherIcon(condition!);
+        weatherIcon = WeatherData().getWeatherIcon(condition);
         cityname = weather['name'];
-        weatherMessage = WeatherData().getMessage(condition!);
+        weatherMessage = WeatherData().getMessage(condition);
         humidity = weather['main']['humidity'];
         windSpeed = weather['wind']['speed'];
       }
@@ -62,7 +62,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: WeatherData().getBgColor(temperature!.toInt()))),
+              colors: WeatherData().getBgColor(temperature.toInt()))),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -91,7 +91,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               MainWeather(
                 weatherIcon: weatherIcon,
                 message: weatherMessage,
-                temp: temperature!.toInt(),
+                temp: temperature.toInt(),
                 humidity: humidity,
                 speed: windSpeed,
               ),
