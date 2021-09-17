@@ -13,7 +13,7 @@ class WeatherData extends ChangeNotifier {
   double? temprature;
   var humidity;
   int? condition;
-
+//get location and weather from open weather servers
   Future<dynamic> getLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
@@ -26,6 +26,7 @@ class WeatherData extends ChangeNotifier {
     return weatherData;
   }
 
+//returns the cupertino weather icon based on condition
   IconData getWeatherIcon(
     int condition,
   ) {
@@ -44,6 +45,7 @@ class WeatherData extends ChangeNotifier {
     }
   }
 
+//returnsmessage based on condition
   String getMessage(int condition) {
     if (condition >= 200) {
       return 'ThunderStorm';
@@ -58,6 +60,7 @@ class WeatherData extends ChangeNotifier {
     }
   }
 
+//sets the background color based on temperature
   List<Color> getBgColor(int temp) {
     if (temp <= 25) {
       return [kCloudyGradientColorTop, kCloudyGradientColorBottom];
@@ -65,7 +68,7 @@ class WeatherData extends ChangeNotifier {
       return [ksunnygradientColorTop, ksunnygradientColorTop];
     } else if (temp < 20) {
       return [kRainyGradientColorTop, kRainyGradientColorBottom];
-    } else if (temp == 30) {
+    } else if (temp == 28) {
       return [Color(0xff20bf55), Color(0xff01baef)];
     } else {
       return [Color(0xffecc38f), Color(0xfffbdd7c)];

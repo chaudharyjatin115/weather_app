@@ -51,7 +51,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     getWeather();
   }
