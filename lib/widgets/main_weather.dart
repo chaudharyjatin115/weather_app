@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/colors%20and%20theme/colors.dart';
 
 import 'package:weather_app/widgets/air_humidity.dart';
-
+//this widget shows the weather icons and cotexual messages
 class MainWeather extends StatefulWidget {
   IconData? weatherIcon;
   String? message;
