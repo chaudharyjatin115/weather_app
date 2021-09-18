@@ -12,7 +12,7 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   String cityname = 'Lucknow';
-  String weatherMessage = 'Unable to get weather Data ';
+  String weatherMessage = 'Please wait while we are gathering WeatherData';
   double temperature = 0.0;
   IconData weatherIcon = CupertinoIcons.clear;
   int condition = 00;
@@ -30,8 +30,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
     setState(() {
       if (weather == null) {
         temperature = 0;
-        weatherIcon = CupertinoIcons.sun_haze;
-        weatherMessage = 'Unable to get weather data';
+        weatherIcon = CupertinoIcons.xmark_circle_fill;
+        weatherMessage = 'Please wait while we are gathering WeatherData';
         cityname = 'Lucknow';
         condition = 400;
         humidity = 400;
@@ -79,7 +79,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
               icon: Icon(
                 Icons.location_on,
               ),
-              onPressed: () {},
+              onPressed: () {
+                WeatherData().getLocationWeather();
+              },
             ),
           ),
         ),

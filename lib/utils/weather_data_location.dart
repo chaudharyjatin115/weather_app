@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:weather_app/colors%20and%20theme/colors.dart';
 import 'package:weather_app/utils/location.dart';
@@ -25,7 +26,7 @@ class WeatherData extends ChangeNotifier {
   IconData getWeatherIcon(
     int condition,
   ) {
-    if (condition >= 200) {
+    if (condition < 232) {
       return CupertinoIcons.cloud_bolt_rain;
     } else if (condition == 800) {
       return CupertinoIcons.sun_max;
@@ -44,7 +45,7 @@ class WeatherData extends ChangeNotifier {
 
 //returnsmessage based on condition
   String getMessage(int condition) {
-    if (condition >= 200) {
+    if (condition < 232) {
       return 'ThunderStorm';
     } else if (condition >= 300) {
       return 'Drizzle';
@@ -58,16 +59,16 @@ class WeatherData extends ChangeNotifier {
   }
 
 //sets the background color based on temperature
-  List<Color> getBgColor(int temp) {
-    if (temp <= 25) {
+  List<Color> getBgColor(int condition) {
+    if (condition >= 801) {
       return [kCloudyGradientColorTop, kCloudyGradientColorBottom];
-    } else if (temp > 33) {
-      return [ksunnygradientColorTop, ksunnygradientColorTop];
-    } else if (temp < 20) {
+    } else if (condition == 800) {
+      return [Colors.yellow, kSunnygradientColorBottom];
+    } else if (condition > 500) {
       return [kRainyGradientColorTop, kRainyGradientColorBottom];
-    } else if (temp == 28) {
-      return [Color(0xff20bf55), Color(0xff01baef)];
-    } else if (temp == 32) {
+      // } else if (condition == ) {
+      //   return [Color(0xff20bf55), Color(0xff01baef)];
+    } else if (condition > 300) {
       return [knewto, kNewColor];
     } else
       return [kCloudyGradientColorBottom, kCloudyGradientColorBottom];
