@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+//colors and gradients
 Color ksunnygradientColorTop = Color(0xffFFC210);
 Color kSunnygradientColorBottom = Color(0xffFF7B47);
 Color kRainyGradientColorTop = Color(0xff5BDEFD);

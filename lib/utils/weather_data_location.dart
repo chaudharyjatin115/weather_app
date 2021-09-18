@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 
 import 'package:weather_app/colors%20and%20theme/colors.dart';
 import 'package:weather_app/utils/location.dart';
