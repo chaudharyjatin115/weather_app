@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-Color ksunnygradientColorTop = Color(0xffFAE077);
-Color kSunnygradientColorBottom = Color(0xfff2b07b);
+Color ksunnygradientColorTop = Color(0xffFFC210);
+Color kSunnygradientColorBottom = Color(0xffFF7B47);
 Color kRainyGradientColorTop = Color(0xff5BDEFD);
 Color kRainyGradientColorBottom = Color(0xff5acbf9);
 Color kCloudyGradientColorTop = Color(0xff6EFAE6);
