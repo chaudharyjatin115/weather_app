@@ -61,15 +61,16 @@ class WeatherData extends ChangeNotifier {
   List<Color> getBgColor(int temp) {
     if (temp <= 25) {
       return [kCloudyGradientColorTop, kCloudyGradientColorBottom];
-    } else if (temp > 30) {
+    } else if (temp > 33) {
       return [ksunnygradientColorTop, ksunnygradientColorTop];
     } else if (temp < 20) {
       return [kRainyGradientColorTop, kRainyGradientColorBottom];
     } else if (temp == 28) {
       return [Color(0xff20bf55), Color(0xff01baef)];
-    } else {
-      return [Color(0xffecc38f), Color(0xfffbdd7c)];
-    }
+    } else if (temp == 32) {
+      return [knewto, kNewColor];
+    } else
+      return [kCloudyGradientColorBottom, kCloudyGradientColorBottom];
   }
 }
 

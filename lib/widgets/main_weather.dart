@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/colors%20and%20theme/colors.dart';
 
 import 'package:weather_app/widgets/air_humidity.dart';
 
@@ -36,7 +37,7 @@ class _MainWeatherState extends State<MainWeather> {
             child: Icon(
               widget.weatherIcon,
               size: 180.0,
-              color: Colors.white,
+              color: kTextcolr,
             ),
           ),
         ),

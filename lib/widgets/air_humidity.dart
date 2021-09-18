@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AirHumidity extends StatelessWidget {
@@ -26,7 +27,7 @@ class AirHumidity extends StatelessWidget {
             width: 20.0,
           ),
           Icon(
-            Icons.water,
+            CupertinoIcons.drop,
             size: 20.0,
           ),
           SizedBox(
