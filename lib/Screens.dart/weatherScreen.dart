@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/colors%20and%20theme/colors.dart';
+import 'package:weather_app/utils/backgroundColors.dart';
+import 'package:weather_app/utils/getWeatherIcon.dart';
 import 'package:weather_app/utils/weather_data_location.dart';
 import 'package:weather_app/widgets/bottomweatherwidget.dart';
 import 'package:weather_app/widgets/main_weather.dart';
@@ -40,9 +42,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
         temperature = weather['main']['temp'];
 
         condition = weather['weather'][0]['id'];
-        weatherIcon = WeatherData().getWeatherIcon(condition);
+        weatherIcon = WeatherIcon().getWeatherIcon(condition);
         cityname = weather['name'];
-        weatherMessage = WeatherData().getMessage(condition);
+        weatherMessage = weather['weather'][0]['main'];
+        print(weatherMessage);
         humidity = weather['main']['humidity'];
         windSpeed = weather['wind']['speed'];
       }
@@ -62,7 +65,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: WeatherData().getBgColor(temperature.toInt()))),
+              colors: BGColor().getBgColor(condition))),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
