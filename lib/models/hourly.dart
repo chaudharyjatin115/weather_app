@@ -1,14 +1,13 @@
 class Hourly {
   final int? dt;
   final double? temp;
-  final String? name;
-  final double? condition;
+
+  final int? condition;
 
   Hourly({
     this.dt,
     this.condition,
     this.temp,
-    this.name,
   });
 
   // static Hourly fromJson(json) {
@@ -18,11 +17,17 @@ class Hourly {
   //     condition: json['weather'][0]['id'],
   //   );
   // }
-  factory Hourly.fromJson(Map<String, dynamic> json) {
-    return Hourly(
-      name: json['name'],
-      temp: json[0]['temp'].toDouble(),
-      condition: json['weather'][0]['id'],
-    );
+  List<Hourly> HourlyfromJson(Map<String, dynamic> json) {
+    final hours = List.generate(json.length, (index) => Hourly());
+    for (final item in json['hourly']) {
+      hours.add(
+        Hourly(
+          temp: item['temp'],
+          dt: item['dt'],
+          condition: item['weather'][0]['id'],
+        ),
+      );
+    }
+    return hours;
   }
 }

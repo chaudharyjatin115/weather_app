@@ -23,7 +23,7 @@ class WeatherData extends ChangeNotifier {
     return weatherData;
   }
 
-  Future<List<dynamic>> fore(BuildContext context) async {
+  Future<List<Hourly>> fore(BuildContext context) async {
     Location location = Location();
     await location.getCurrentLocation();
 
@@ -31,7 +31,8 @@ class WeatherData extends ChangeNotifier {
         'https://api.openweathermap.org/data/2.5/onecall?lat=19.0543&lon=73.5178&exclude=current,minutely,daily&appid=9df522183f9f5d00159fd394a1116708');
     var forecastData = await networkHelper.getData();
     print(forecastData);
-    return forecastData.map<Hourly>(Hourly.fromJson(forecastData)).toList();
+
+    return Hourly().HourlyfromJson(forecastData);
   }
 }
 
