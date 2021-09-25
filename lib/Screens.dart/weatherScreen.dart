@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:weather_app/colors%20and%20theme/colors.dart';
+import 'package:weather_app/models/hourly.dart';
+
 import 'package:weather_app/utils/backgroundColors.dart';
 import 'package:weather_app/utils/getWeatherIcon.dart';
 import 'package:weather_app/utils/weather_data_location.dart';
-import 'package:weather_app/widgets/bottomweatherwidget.dart';
+
 import 'package:weather_app/widgets/main_weather.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -25,37 +28,35 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     super.initState();
     getWeather();
+    WeatherData().fore(context);
   }
 
   dynamic getWeather() async {
     var weather = await WeatherData().getLocationWeather();
     setState(() {
-      if (weather == null) {
-        temperature = 0;
-        weatherIcon = CupertinoIcons.xmark_circle_fill;
-        weatherMessage = 'Please wait while we are gathering WeatherData';
-        cityname = 'Lucknow';
-        condition = 400;
-        humidity = 400;
-        windSpeed = 1.5;
-      } else {
-        temperature = weather['main']['temp'];
+      temperature = weather['main']['temp'];
 
-        condition = weather['weather'][0]['id'];
-        weatherIcon = WeatherIcon().getWeatherIcon(condition);
-        cityname = weather['name'];
-        weatherMessage = weather['weather'][0]['main'];
-        print(weatherMessage);
-        humidity = weather['main']['humidity'];
-        windSpeed = weather['wind']['speed'];
-      }
+      condition = weather['weather'][0]['id'];
+      weatherIcon = WeatherIcon().getWeatherIcon(condition);
+      cityname = weather['name'];
+      weatherMessage = weather['weather'][0]['main'];
+      print(weatherMessage);
+      humidity = weather['main']['humidity'];
+      windSpeed = weather['wind']['speed'];
     });
+  }
+
+  dynamic getForecast() async {
+    var weather = WeatherData().fore(context);
+    print(weather);
+    return weather;
   }
 
   @override
   void dispose() {
     super.dispose();
     getWeather();
+    WeatherData().fore(context);
   }
 
   @override
@@ -100,17 +101,26 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 humidity: humidity,
                 speed: windSpeed,
               ),
+
+              //add forecast data containers
               Container(
                 alignment: Alignment.bottomLeft,
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    BottomWeatherWidget(),
-                    BottomWeatherWidget(),
-                    BottomWeatherWidget()
-                  ],
-                ),
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FutureBuilder<Hourly>(
+                          future: getForecast(),
+                          // ignore: non_constant_identifier_names
+                          builder: (context, AsyncSnapshot) {
+                            if (AsyncSnapshot.hasData) {
+                              return Text(AsyncSnapshot.data!.temp!.toString());
+                            } else if (AsyncSnapshot.hasError) {
+                              return Text('${AsyncSnapshot.hasError}');
+                            }
+                            return CircularProgressIndicator();
+                          })
+                    ]),
               ),
             ],
           ),

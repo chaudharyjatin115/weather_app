@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/utils/location.dart';
-import 'package:weather_app/utils/networking.dart';
+
+import 'package:weather_app/models/hourly.dart';
+
+import 'package:weather_app/services/location.dart';
+import 'package:weather_app/services/networking.dart';
 
 class WeatherData extends ChangeNotifier {
   final String apiKey = '9df522183f9f5d00159fd394a1116708';
@@ -20,13 +23,21 @@ class WeatherData extends ChangeNotifier {
     return weatherData;
   }
 
-//returns the cupertino weather icon based on condition
+  Future<List<dynamic>> fore(BuildContext context) async {
+    Location location = Location();
+    await location.getCurrentLocation();
 
-//sets the background color based on temperature
+    NetworkHelper networkHelper = NetworkHelper(
+        'https://api.openweathermap.org/data/2.5/onecall?lat=19.0543&lon=73.5178&exclude=current,minutely,daily&appid=9df522183f9f5d00159fd394a1116708');
+    var forecastData = await networkHelper.getData();
+    print(forecastData);
+    return forecastData.map<Hourly>(Hourly.fromJson(forecastData)).toList();
+  }
 }
 
+//returns thme cupertino weather icon based on condition
 
-
+//sets the background color based on temperature
 
 // temprature = decodeData['main']['temp'];
 //         humidity = decodeData['main']['humidity'];
