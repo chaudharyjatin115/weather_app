@@ -18,7 +18,12 @@ class Hourly {
   //   );
   // }
   List<Hourly> HourlyfromJson(Map<String, dynamic> json) {
-    final hours = List.generate(json.length, (index) => Hourly());
+    // final hours = List.generate(json.length, (index) => Hourly());
+    // this actually creates $json.length empty items in list
+    // and adds new fetched to list.
+
+    final List<Hourly> hours = []; // empty list
+
     for (final item in json['hourly']) {
       hours.add(
         Hourly(

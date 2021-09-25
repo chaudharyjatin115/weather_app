@@ -46,7 +46,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     });
   }
 
-  dynamic getForecast() async {
+  Future<List<Hourly>> getForecast() async {
     var weather = WeatherData().fore(context);
     print(weather);
     return weather;
@@ -109,14 +109,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FutureBuilder<Hourly>(
+                      FutureBuilder<List<Hourly>>(
                           future: getForecast(),
                           // ignore: non_constant_identifier_names
-                          builder: (context, AsyncSnapshot) {
-                            if (AsyncSnapshot.hasData) {
-                              return Text(AsyncSnapshot.data!.temp!.toString());
-                            } else if (AsyncSnapshot.hasError) {
-                              return Text('${AsyncSnapshot.hasError}');
+                          builder: (context, asyncSnapshot) {
+                            if (asyncSnapshot.hasData) {
+                              return Text(
+                                asyncSnapshot.data!.first.temp.toString(),
+                              );
+                            } else if (asyncSnapshot.hasError) {
+                              return Text('${asyncSnapshot.hasError}');
                             }
                             return CircularProgressIndicator();
                           })
