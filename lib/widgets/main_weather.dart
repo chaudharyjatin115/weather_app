@@ -48,7 +48,7 @@ class _MainWeatherState extends State<MainWeather> {
           height: 20.0,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 5.0, bottom: 20.0),
+          padding: const EdgeInsets.only(top: 30.0, bottom: 15.0),
           child: Center(
             child: Text(
               '${widget.message}',
