@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:weather_app/Screens.dart/loading.dart';
 import 'package:weather_app/Screens.dart/weatherScreen.dart';
 
 import 'colors and theme/colors.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           textTheme: TextTheme(bodyText2: TextStyle(color: kTextcolr)),
           appBarTheme: AppBarTheme(elevation: 0, color: Colors.transparent)),
       debugShowCheckedModeBanner: false,
-      home: WeatherScreen(),
+      home: LoadingScreen(),
     );
   }
 }

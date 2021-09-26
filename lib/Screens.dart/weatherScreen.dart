@@ -12,6 +12,8 @@ import 'package:weather_app/utils/weather_data_location.dart';
 import 'package:weather_app/widgets/main_weather.dart';
 
 class WeatherScreen extends StatefulWidget {
+  final locationweatherdata;
+  WeatherScreen(this.locationweatherdata);
   @override
   _WeatherScreenState createState() => _WeatherScreenState();
 }
@@ -28,12 +30,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
-    getWeather();
+    updateUi(widget.locationweatherdata);
     WeatherData().fore(context);
   }
 
-  dynamic getWeather() async {
-    var weather = await WeatherData().getLocationWeather();
+  void updateUi(dynamic weather) async {
     setState(() {
       temperature = weather['main']['temp'];
 
@@ -56,7 +57,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void dispose() {
     super.dispose();
-    getWeather();
+
     WeatherData().fore(context);
   }
 

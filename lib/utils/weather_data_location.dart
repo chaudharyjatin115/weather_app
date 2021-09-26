@@ -30,9 +30,8 @@ class WeatherData extends ChangeNotifier {
     NetworkHelper networkHelper = NetworkHelper(
         'https://api.openweathermap.org/data/2.5/onecall?lat=19.0543&lon=73.5178&exclude=current,minutely,daily&appid=9df522183f9f5d00159fd394a1116708&units=metric');
     var forecastData = await networkHelper.getData();
-    print(forecastData);
 
-    return Hourly().HourlyfromJson(forecastData);
+    return Hourly().hourlyfromJson(forecastData);
   }
 }
 
