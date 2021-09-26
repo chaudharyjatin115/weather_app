@@ -1,7 +1,6 @@
 class Hourly {
   final int? dt;
-  final double? temp;
-
+  var temp;
   final int? condition;
 
   Hourly({
@@ -18,7 +17,8 @@ class Hourly {
   //   );
   // }
   List<Hourly> HourlyfromJson(Map<String, dynamic> json) {
-    final hours = List.generate(json.length, (index) => Hourly());
+    // ignore: unused_local_variable
+    final List<Hourly> hours = [];
     for (final item in json['hourly']) {
       hours.add(
         Hourly(
