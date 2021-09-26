@@ -16,7 +16,7 @@ class Hourly {
   //     condition: json['weather'][0]['id'],
   //   );
   // }
-  List<Hourly> HourlyfromJson(Map<String, dynamic> json) {
+  List<Hourly> hourlyfromJson(Map<String, dynamic> json) {
     // ignore: unused_local_variable
     final List<Hourly> hours = [];
     for (final item in json['hourly']) {
