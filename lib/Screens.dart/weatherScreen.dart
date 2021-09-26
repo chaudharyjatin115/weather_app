@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:weather_app/colors%20and%20theme/colors.dart';
-import 'package:weather_app/models/getTimeStamp.dart';
+import 'package:weather_app/utils/getTimeStamp.dart';
 import 'package:weather_app/models/hourly.dart';
 
 import 'package:weather_app/utils/backgroundColors.dart';
