@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:weather_app/colors%20and%20theme/colors.dart';
+import 'package:weather_app/models/getTimeStamp.dart';
+import 'package:weather_app/models/hourly.dart';
+
 import 'package:weather_app/utils/backgroundColors.dart';
 import 'package:weather_app/utils/getWeatherIcon.dart';
 import 'package:weather_app/utils/weather_data_location.dart';
-import 'package:weather_app/widgets/bottomweatherwidget.dart';
+
 import 'package:weather_app/widgets/main_weather.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -14,7 +18,7 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   String cityname = 'Lucknow';
-  String weatherMessage = 'Please wait while we are gathering WeatherData';
+  String weatherMessage = 'Gathering WeatherData';
   double temperature = 0.0;
   IconData weatherIcon = CupertinoIcons.clear;
   int condition = 00;
@@ -25,37 +29,35 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     super.initState();
     getWeather();
+    WeatherData().fore(context);
   }
 
   dynamic getWeather() async {
     var weather = await WeatherData().getLocationWeather();
     setState(() {
-      if (weather == null) {
-        temperature = 0;
-        weatherIcon = CupertinoIcons.xmark_circle_fill;
-        weatherMessage = 'Please wait while we are gathering WeatherData';
-        cityname = 'Lucknow';
-        condition = 400;
-        humidity = 400;
-        windSpeed = 1.5;
-      } else {
-        temperature = weather['main']['temp'];
+      temperature = weather['main']['temp'];
 
-        condition = weather['weather'][0]['id'];
-        weatherIcon = WeatherIcon().getWeatherIcon(condition);
-        cityname = weather['name'];
-        weatherMessage = weather['weather'][0]['main'];
-        print(weatherMessage);
-        humidity = weather['main']['humidity'];
-        windSpeed = weather['wind']['speed'];
-      }
+      condition = weather['weather'][0]['id'];
+      weatherIcon = WeatherIcon.getWeatherIcon(condition);
+      cityname = weather['name'];
+      weatherMessage = weather['weather'][0]['main'];
+      print(weatherMessage);
+      humidity = weather['main']['humidity'];
+      windSpeed = weather['wind']['speed'];
     });
+  }
+
+  Future<List<Hourly>> getForecast() async {
+    var weather = WeatherData().fore(context);
+    print(weather);
+    return weather;
   }
 
   @override
   void dispose() {
     super.dispose();
     getWeather();
+    WeatherData().fore(context);
   }
 
   @override
@@ -90,30 +92,92 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MainWeather(
-                weatherIcon: weatherIcon,
-                message: weatherMessage,
-                temp: temperature.toInt(),
-                humidity: humidity,
-                speed: windSpeed,
-              ),
-              Container(
-                alignment: Alignment.bottomLeft,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    BottomWeatherWidget(),
-                    BottomWeatherWidget(),
-                    BottomWeatherWidget()
-                  ],
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MainWeather(
+                  weatherIcon: weatherIcon,
+                  message: weatherMessage,
+                  temp: temperature.toInt(),
+                  humidity: humidity,
+                  speed: windSpeed,
                 ),
-              ),
-            ],
-          ),
+
+                //add forecast data containers
+
+                Expanded(
+                  child: FutureBuilder<List<Hourly>>(
+                      future: getForecast(),
+                      // ignore: non_constant_identifier_names
+                      builder: (context, asyncSnapshot) {
+                        if (asyncSnapshot.hasData) {
+                          return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: asyncSnapshot.data!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, top: 120.0, bottom: 10.0),
+                                  child: Container(
+                                    width: 120.0,
+                                    height: 180,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        color: Colors.white10.withOpacity(0.2)),
+                                    alignment: Alignment.bottomCenter,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Align(alignment: Alignment.center),
+                                        Text(
+                                          getTimeFromTimestamp(
+                                              asyncSnapshot.data![index].dt!),
+                                        ),
+                                        SizedBox(
+                                          height: 10.0,
+                                        ),
+                                        Icon(
+                                          WeatherIcon.getWeatherIcon(
+                                              asyncSnapshot
+                                                  .data![index].condition!
+                                                  .toInt()),
+                                          color: kTextcolr,
+                                          size: 80.0,
+                                        ),
+                                        SizedBox(
+                                          height: 10.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 18.0),
+                                          child: Text(
+                                            '${asyncSnapshot.data![index].temp!.toInt()}°',
+                                            style: TextStyle(
+                                                fontSize: 30.0,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              });
+                        } else if (asyncSnapshot.hasError) {
+                          return Text('${asyncSnapshot.hasError}');
+                        }
+                        return Center(
+                          child: Container(
+                              height: 20,
+                              width: 30,
+                              child: CircularProgressIndicator()),
+                        );
+                      }),
+                ),
+              ]),
         ),
       ),
     );
