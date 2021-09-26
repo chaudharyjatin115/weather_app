@@ -103,7 +103,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   speed: windSpeed,
                 ),
 
-<<<<<<< HEAD
                 //add forecast data containers
 
                 Expanded(
@@ -179,32 +178,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       }),
                 ),
               ]),
-=======
-              //add forecast data containers
-              Container(
-                alignment: Alignment.bottomLeft,
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      FutureBuilder<List<Hourly>>(
-                          future: getForecast(),
-                          // ignore: non_constant_identifier_names
-                          builder: (context, asyncSnapshot) {
-                            if (asyncSnapshot.hasData) {
-                              return Text(
-                                asyncSnapshot.data!.first.temp.toString(),
-                              );
-                            } else if (asyncSnapshot.hasError) {
-                              return Text('${asyncSnapshot.hasError}');
-                            }
-                            return CircularProgressIndicator();
-                          })
-                    ]),
-              ),
-            ],
-          ),
->>>>>>> 06ba8c74b3a1e68f2b4e183f6c9f2da0571b355e
         ),
       ),
     );
