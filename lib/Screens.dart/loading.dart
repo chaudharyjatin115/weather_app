@@ -14,6 +14,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     getLocationData();
+    WeatherData().fore(context);
   }
 
   void getLocationData() async {
