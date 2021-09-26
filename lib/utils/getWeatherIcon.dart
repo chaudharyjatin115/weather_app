@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WeatherIcon {
-  IconData getWeatherIcon(
+  static IconData getWeatherIcon(
     int condition,
   ) {
     if (condition < 233) {
