@@ -103,7 +103,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   humidity: humidity,
                   speed: windSpeed,
                 ),
-
+                Row(
+                  children: [Text('${DateTime.now()}')],
+                ),
                 //add forecast data containers
 
                 Expanded(
@@ -122,7 +124,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                         left: 10.0, top: 120.0, bottom: 10.0),
                                     child: Container(
                                       width: 120.0,
-                                      height: 180,
+                                      height: 160,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
@@ -151,7 +153,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                             size: 50.0,
                                           ),
                                           SizedBox(
-                                            height: 25.0,
+                                            height: 20.0,
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -159,7 +161,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                             child: Text(
                                               '${asyncSnapshot.data![index].temp!.toInt()}°',
                                               style: TextStyle(
-                                                  fontSize: 30.0,
+                                                  fontSize: 25.0,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           )
