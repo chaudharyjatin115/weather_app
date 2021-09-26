@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //colors and gradients
-Color ksunnygradientColorTop = Color(0xffFFC210);
-Color kSunnygradientColorBottom = Color(0xffFF7B47);
+Color ksunnygradientColorTop = Color(0xffFAE177);
+Color kSunnygradientColorBottom = Color(0xffFFBE94);
 Color kRainyGradientColorTop = Color(0xff5BDEFD);
 Color kRainyGradientColorBottom = Color(0xff5acbf9);
-Color kCloudyGradientColorTop = Color(0xff6EFAE6);
-Color kCloudyGradientColorBottom = Color(0xff6DF1E7);
+Color kCloudyGradientColorTop = Color(0xff4BE2E3);
+Color kCloudyGradientColorBottom = Color(0xff72EFEE);
 Color ksnowyColorTop = Colors.blue.shade50;
 Color ksnowyColorBottom = Colors.lightBlue.shade100;
 Color kClearSkytop = Color(0xffA0C4FF);
