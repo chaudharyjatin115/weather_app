@@ -1,37 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class WeatherIcon {
   static IconData getWeatherIcon(
     int condition,
   ) {
     if (condition < 233) {
-      return CupertinoIcons.cloud_bolt_rain;
+      return WeatherIcons.thunderstorm;
     } else if (condition == 800) {
-      return CupertinoIcons.sun_max;
+      return WeatherIcons.day_sunny;
     } else if (condition > 801) {
-      return CupertinoIcons.cloud;
-    } else if (condition < 700) {
-      return CupertinoIcons.cloud_snow_fill;
-    } else if (condition < 623) {
+      return WeatherIcons.day_cloudy;
+    } else if (condition > 600) {
       return CupertinoIcons.snow;
     } else if (condition < 322) {
-      return CupertinoIcons.cloud_drizzle;
-    } else if (condition < 532) {
-      return CupertinoIcons.cloud_rain;
+      return WeatherIcons.raindrops;
+    } else if (condition > 500) {
+      return WeatherIcons.rain;
     } else if (condition == 711) {
-      return CupertinoIcons.smoke;
+      return WeatherIcons.smoke;
     } else if (condition == 721) {
-      return CupertinoIcons.sun_haze;
+      return WeatherIcons.day_haze;
     } else if (condition == 741) {
-      return CupertinoIcons.cloud_fog;
+      return WeatherIcons.fog;
     } else if (condition == 761) {
-      return CupertinoIcons.sun_dust;
+      return WeatherIcons.dust;
     } else if (condition == 781) {
-      return CupertinoIcons.tornado;
+      return WeatherIcons.tornado;
     } else if (condition == 761) {
       return CupertinoIcons.cloud_fog;
+    } else if (condition == 751) {
+      return WeatherIcons.sandstorm;
     }
-    return CupertinoIcons.cloud;
+    return WeatherIcons.cloud;
   }
 }
