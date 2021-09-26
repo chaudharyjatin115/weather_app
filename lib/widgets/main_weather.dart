@@ -31,14 +31,16 @@ class _MainWeatherState extends State<MainWeather> {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 1.0),
-          child: Container(
-            color: Colors.transparent,
-            alignment: Alignment.center,
-            height: 180.0,
-            child: Icon(
-              widget.weatherIcon,
-              size: 180.0,
-              color: kTextcolr,
+          child: Center(
+            child: Container(
+              color: Colors.transparent,
+              alignment: Alignment.center,
+              height: 180.0,
+              child: Icon(
+                widget.weatherIcon,
+                size: 150.0,
+                color: kTextcolr,
+              ),
             ),
           ),
         ),
