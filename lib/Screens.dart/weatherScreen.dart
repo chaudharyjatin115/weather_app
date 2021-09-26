@@ -116,56 +116,69 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               scrollDirection: Axis.horizontal,
                               itemCount: asyncSnapshot.data!.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 120.0, bottom: 10.0),
-                                  child: Container(
-                                    width: 120.0,
-                                    height: 180,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        color: Colors.white10.withOpacity(0.2)),
-                                    alignment: Alignment.bottomCenter,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Align(alignment: Alignment.center),
-                                        Text(
-                                          getTimeFromTimestamp(
-                                              asyncSnapshot.data![index].dt!),
-                                        ),
-                                        SizedBox(
-                                          height: 10.0,
-                                        ),
-                                        Icon(
-                                          WeatherIcon.getWeatherIcon(
-                                              asyncSnapshot
-                                                  .data![index].condition!
-                                                  .toInt()),
-                                          color: kTextcolr,
-                                          size: 80.0,
-                                        ),
-                                        SizedBox(
-                                          height: 10.0,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 18.0),
-                                          child: Text(
-                                            '${asyncSnapshot.data![index].temp!.toInt()}°',
-                                            style: TextStyle(
-                                                fontSize: 30.0,
-                                                fontWeight: FontWeight.w500),
+                                return Column(children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                          '${getDateFromTimestamp(asyncSnapshot.data![index].dt!.toInt())}'),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10.0, top: 120.0, bottom: 10.0),
+                                    child: Container(
+                                      width: 120.0,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          color:
+                                              Colors.white10.withOpacity(0.2)),
+                                      alignment: Alignment.bottomCenter,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text('${DateTime.now()}')
+                                            ],
                                           ),
-                                        )
-                                      ],
+                                          Text(
+                                            getTimeFromTimestamp(
+                                                asyncSnapshot.data![index].dt!),
+                                          ),
+                                          SizedBox(
+                                            height: 10.0,
+                                          ),
+                                          Icon(
+                                            WeatherIcon.getWeatherIcon(
+                                                asyncSnapshot
+                                                    .data![index].condition!
+                                                    .toInt()),
+                                            color: kTextcolr,
+                                            size: 80.0,
+                                          ),
+                                          SizedBox(
+                                            height: 10.0,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 18.0),
+                                            child: Text(
+                                              '${asyncSnapshot.data![index].temp!.toInt()}°',
+                                              style: TextStyle(
+                                                  fontSize: 30.0,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                );
+                                ]);
                               });
                         } else if (asyncSnapshot.hasError) {
                           return Text('${asyncSnapshot.hasError}');
