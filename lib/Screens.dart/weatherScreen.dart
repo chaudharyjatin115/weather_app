@@ -117,12 +117,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               itemCount: asyncSnapshot.data!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Column(children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                          '${getDateFromTimestamp(asyncSnapshot.data![index].dt!.toInt())}'),
-                                    ],
-                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 10.0, top: 120.0, bottom: 10.0),
@@ -141,11 +135,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Row(
-                                            children: [
-                                              Text('${DateTime.now()}')
-                                            ],
-                                          ),
                                           Text(
                                             getTimeFromTimestamp(
                                                 asyncSnapshot.data![index].dt!),
@@ -159,10 +148,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                                     .data![index].condition!
                                                     .toInt()),
                                             color: kTextcolr,
-                                            size: 80.0,
+                                            size: 50.0,
                                           ),
                                           SizedBox(
-                                            height: 10.0,
+                                            height: 25.0,
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
