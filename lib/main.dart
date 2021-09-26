@@ -10,9 +10,9 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.dark,
     statusBarColor: Colors.transparent,
-    systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarColor: Colors.black,
     systemNavigationBarIconBrightness:
-        Brightness.dark, // transparent status bar
+        Brightness.light, // transparent status bar
   ));
 
   runApp(MyApp());
