@@ -103,9 +103,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   humidity: humidity,
                   speed: windSpeed,
                 ),
-                Row(
-                  children: [Text('${DateTime.now()}')],
-                ),
+
                 //add forecast data containers
 
                 Expanded(
