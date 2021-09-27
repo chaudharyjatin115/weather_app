@@ -9,7 +9,14 @@ class WeatherIcon {
     if (condition < 233) {
       return WeatherIcons.thunderstorm;
     } else if (condition == 800) {
-      return WeatherIcons.day_sunny;
+      var hour = DateTime.now().hour;
+      if (hour < 12) {
+        return WeatherIcons.day_sunny;
+      }
+      if (hour < 17) {
+        return WeatherIcons.day_sunny;
+      }
+      return WeatherIcons.night_clear;
     } else if (condition > 801) {
       return WeatherIcons.day_cloudy;
     } else if (condition > 600) {

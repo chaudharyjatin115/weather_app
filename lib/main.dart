@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:weather_app/Screens.dart/loading.dart';
+import 'package:weather_app/Screens.dart/loading_screen.dart';
 import 'colors and theme/colors.dart';
 
 void main() {
