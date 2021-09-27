@@ -21,3 +21,5 @@ Color kFogColorTop = Color(0xffFFA8A7);
 Color kFogColorBottom = Colors.white;
 Color kNewColor = Color(0xffF8EDD4);
 Color knewto = Color(0xff9AB9BF);
+Color kmistColorTop = Color(0xffFFA8A7);
+Color kmistColorBottom = Color(0xffA0C4FF);
