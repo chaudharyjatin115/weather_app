@@ -1,4 +1,4 @@
 # weather_app
 
 This is a beautiful weather  app built with flutter 
-this is not a complete project  would be updated soon altho it still works
+with cureent weather forecast and weather temp
