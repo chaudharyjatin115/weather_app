@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/Screens.dart/weatherScreen.dart';
+import 'package:weather_app/colors%20and%20theme/colors.dart';
 import 'package:weather_app/utils/weather_data_location.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -28,6 +29,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kClearSkyBottom,
       body: SafeArea(
         child: Center(
           child: Container(
