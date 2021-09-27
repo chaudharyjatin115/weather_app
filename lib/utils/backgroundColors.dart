@@ -3,20 +3,22 @@ import 'package:weather_app/colors%20and%20theme/colors.dart';
 
 class BGColor {
   List<Color> getBgColor(int condition) {
-    if (condition < 233) {
-      return [kRainyGradientColorTop, kCloudyGradientColorBottom];
+    if (condition < 322) {
+      return [kRainyGradientColorTop, kRainyGradientColorBottom];
     } else if (condition == 800) {
-      return [kClearSkytop, kClearSkyBottom];
+      return [ksunnygradientColorTop, kSunnygradientColorBottom];
       // } else if (temp > 30) {
       //   return [kRainyGradientColorTop, kSunnygradientColorBottom];
     } else if (condition <= 700) {
       return [ksnowyColorTop, ksnowyColorBottom];
-    } else if (condition < 623) {
-      return [ksnowyColorTop, ksnowyColorBottom];
-    } else if (condition < 322) {
+    } else if (condition >= 801) {
       return [kRainyGradientColorTop, kRainyGradientColorBottom];
+    } else if (condition > 600) {
+      return [ksnowyColorTop, ksnowyColorBottom];
     } else if (condition < 532) {
       return [kRainyGradientColorTop, kRainyGradientColorTop];
+    } else if (condition == 701) {
+      return [kmistColorTop, kmistColorBottom];
     } else if (condition == 711) {
       return [kStormColorBottom, kStormColorTop];
     } else if (condition <= 721) {
