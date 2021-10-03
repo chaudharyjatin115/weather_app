@@ -1,11 +1,12 @@
+import 'dart:ffi';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:weather_app/Screens.dart/weatherScreen.dart';
 import 'package:weather_app/colors%20and%20theme/colors.dart';
 import 'package:weather_app/utils/weather_data_location.dart';
 
 class LoadingScreen extends StatefulWidget {
-  const LoadingScreen({Key? key}) : super(key: key);
-
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -15,7 +16,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     getLocationData();
-    WeatherData().fore(context);
   }
 
   void getLocationData() async {
@@ -33,10 +33,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
       body: SafeArea(
         child: Center(
           child: Container(
-            child: CircularProgressIndicator(
-              color: Colors.amber,
-            ),
-          ),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Getting weather Data please wait',
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  CircularProgressIndicator(
+                    color: Colors.amber,
+                  ),
+                ],
+              )),
         ),
       ),
     );
