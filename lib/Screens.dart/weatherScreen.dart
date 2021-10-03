@@ -50,14 +50,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Future<List<Hourly>> getForecast() async {
     var weather = WeatherData().fore(context);
-    print(weather);
     return weather;
   }
 
   @override
   void dispose() {
     super.dispose();
-
     WeatherData().fore(context);
   }
 
@@ -105,7 +103,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
 
                 //add forecast data containers
-
+                SizedBox(
+                  height: 80.0,
+                ),
                 Expanded(
                   child: FutureBuilder<List<Hourly>>(
                       future: getForecast(),
@@ -119,9 +119,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 return Column(children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 10.0, top: 120.0, bottom: 10.0),
+                                        left: 10.0, bottom: 5.0),
                                     child: Container(
-                                      width: 120.0,
+                                      width: 100.0,
                                       height: 160,
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -140,7 +140,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                                 asyncSnapshot.data![index].dt!),
                                           ),
                                           SizedBox(
-                                            height: 10.0,
+                                            height: 8.0,
                                           ),
                                           Icon(
                                             WeatherIcon.getWeatherIcon(
@@ -159,7 +159,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                             child: Text(
                                               '${asyncSnapshot.data![index].temp!.toInt()}°',
                                               style: TextStyle(
-                                                  fontSize: 25.0,
+                                                  fontSize: 15.0,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           )
