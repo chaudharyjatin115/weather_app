@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:weather_app/Screens.dart/weatherScreen.dart';
 import 'package:weather_app/colors%20and%20theme/colors.dart';
