@@ -16,11 +16,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
+    // try {
     var weatherData = await WeatherData().getLocationWeather();
 
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => WeatherScreen(weatherData)),
         (Route<dynamic> route) => false);
+    // } catch (e) {
+    //   SnackBar(
+    //     content: Text('$e'),
+    //   );
+    // }
   }
 
   @override
