@@ -16,17 +16,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
-    // try {
+    try {
     var weatherData = await WeatherData().getLocationWeather();
-
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => WeatherScreen(weatherData)),
-        (Route<dynamic> route) => false);
-    // } catch (e) {
-    //   SnackBar(
-    //     content: Text('$e'),
-    //   );
-    // }
+if (weatherData != null) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => WeatherScreen(weatherData)),
+            (Route<dynamic> route) => false);
+} else {}
+    } catch (e) {
+      SnackBar(
+        content: Text('$e'),
+      );
+    }
   }
 
   @override

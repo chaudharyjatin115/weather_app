@@ -6,8 +6,9 @@ import 'package:weather_app/models/hourly.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:weather_app/services/networking.dart';
 
-class WeatherData extends ChangeNotifier {
-  final String apiKey = '9df522183f9f5d00159fd394a1116708';
+class WeatherData {
+  final String apiKey = '129e7bcd56c263c7c4908ce62ac3f340';
+
   double? latitude;
   double? longitu;
 //get location and weather from open weather servers
@@ -28,11 +29,12 @@ class WeatherData extends ChangeNotifier {
     await location.getCurrentLocation();
 
     NetworkHelper networkHelper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=19.0543&lon=73.5178&exclude=current,minutely,daily&appid=9df522183f9f5d00159fd394a1116708&units=metric');
+        'https://api.openweathermap.org/data/2.5/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude=current,minutely,daily&appid=$apiKey&units=metric');
     var forecastData = await networkHelper.getData();
-
+    print(Hourly().hourlyfromJson(forecastData));
     return Hourly().hourlyfromJson(forecastData);
   }
+  
 }
 
 //returns thme cupertino weather icon based on condition
